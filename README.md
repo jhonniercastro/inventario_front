@@ -4,7 +4,7 @@ Este repositorio contiene la interfaz de usuario para el sistema de gestión de 
 
 ## Tecnologías Utilizadas
 
-*   Framework: Angular v19 (Componentes Standalone)[cite: 1]
+*   Framework: Angular v19 (Componentes Standalone)
 *   Lenguaje: TypeScript
 *   Estilos: CSS puro (Diseño simple y responsive)
 *   Seguridad: Interceptores HTTP para manejo de JWT
