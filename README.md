@@ -1,59 +1,44 @@
-# InventarioFront
+# MiniSistema de Gestión de Inventario - Frontend Web
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.25.
+Este repositorio contiene la interfaz de usuario para el sistema de gestión de inventario de la empresa CCL. Permite a los usuarios autenticados visualizar el inventario actual y registrar el movimiento de los productos de manera intuitiva.
 
-## Development server
+## Tecnologías Utilizadas
 
-To start a local development server, run:
+*   Framework: Angular v19 (Componentes Standalone)[cite: 1]
+*   Lenguaje: TypeScript
+*   Estilos: CSS puro (Diseño simple y responsive)
+*   Seguridad: Interceptores HTTP para manejo de JWT
 
-```bash
+## Requisitos Previos
+
+*   [Node.js](https://nodejs.org/) (Versión v20.18.1+ o v22.11.0+)
+*   [Angular CLI v19](https://angular.dev/tools/cli) (Instalable globalmente con `npm install -g @angular/cli@19`)
+*   La API del Backend de CCL ejecutándose localmente.
+
+## Configuración y Ejecución
+
+1. Clona este repositorio y abre una terminal en la carpeta raíz.
+
+2. Instala las dependencias del proyecto:Asegúrate de que la URL de la API en los servicios de Angular (src/app/services/auth.service.ts y src/app/services/inventory.service.ts) apunte al puerto correcto donde se está ejecutando tu backend local en .NET.
+Levanta el servidor de desarrollo:
+npm install
+
+3. Asegúrate de que la URL de la API en los servicios de Angular (src/app/services/auth.service.ts y src/app/services/inventory.service.ts) apunte al puerto correcto donde se está ejecutando tu backend local en .NET.
+
+4. Levanta el servidor de desarrollo:
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Abre el navegador y accede a http://localhost:4200/.
 
-## Code scaffolding
+Acceso al Sistema
+La aplicación está protegida por un Login básico. Para ingresar y probar el flujo funcional, utiliza las siguientes credenciales:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Usuario: admin
+Contraseña: admin123
 
-```bash
-ng generate component component-name
-```
+Funcionalidades Principales
+Login protegido: El sistema restringe el acceso mediante Guards que verifican el Bearer Token.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Consulta de Inventario: Lista en tiempo real de los productos y sus cantidades disponibles.
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Registro de Movimientos: Formulario con validaciones para registrar entradas y salidas de forma segura.
