@@ -1,1 +1,51 @@
-<p>movimiento-inventario works!</p>
+<div class="form-container">
+  <header class="header">
+    <h2>Registrar Movimiento</h2>
+    <button routerLink="/inventario" class="btn-secondary">Volver al Inventario</button>
+  </header>
+
+  <form [formGroup]="movimientoForm" (ngSubmit)="onSubmit()">
+    
+    <div class="form-group">
+      <label for="ProductoId">Producto:</label>
+      <select id="ProductoId" formControlName="ProductoId">
+        <option value="" disabled selected>Selecciona un producto...</option>
+        
+        @for (producto of productos; track producto.id) {
+          <option [value]="producto.id">
+            {{ producto.nombre }} (Stock actual: {{ producto.cantidad }})
+          </option>
+        }
+      </select>
+      
+      @if (movimientoForm.get('ProductoId')?.hasError('required') && movimientoForm.get('ProductoId')?.touched) {
+        <small class="error-text">Debe seleccionar un producto.</small>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="Tipo">Tipo de Movimiento:</label>
+      <select id="Tipo" formControlName="Tipo">
+        <option value="entrada">Entrada</option>
+        <option value="salida">Salida</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="Cantidad">Cantidad:</label>
+      <input id="Cantidad" type="number" formControlName="Cantidad" placeholder="Ingresa la cantidad">
+      
+      @if (movimientoForm.get('Cantidad')?.hasError('required') && movimientoForm.get('Cantidad')?.touched) {
+        <small class="error-text">La cantidad es obligatoria.</small>
+      }
+      @if (movimientoForm.get('Cantidad')?.hasError('min') && movimientoForm.get('Cantidad')?.touched) {
+        <small class="error-text">La cantidad debe ser mayor a 0.</small>
+      }
+    </div>
+
+    <button type="submit" [disabled]="movimientoForm.invalid" class="btn-primary">
+      Guardar Movimiento
+    </button>
+    
+  </form>
+</div>

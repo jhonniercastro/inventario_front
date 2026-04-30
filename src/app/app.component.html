@@ -1,3 +1,13 @@
-
-
-<router-outlet />
+@if (authService.isLoggedIn()) {
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <h1>CCL - Gestión de Inventario</h1>
+    </div>
+    <div class="navbar-actions">
+      <button (click)="cerrarSesion()" class="btn-danger">Cerrar Sesión</button>
+    </div>
+  </nav>
+}
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
