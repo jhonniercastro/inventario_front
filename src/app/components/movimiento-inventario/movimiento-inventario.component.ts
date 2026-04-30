@@ -7,7 +7,7 @@ import { InventoryService } from '../../services/inventory.service';
 @Component({
   selector: 'app-movimiento-inventario',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink], 
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './movimiento-inventario.component.html',
   styleUrl: './movimiento-inventario.component.css'
 })
@@ -25,14 +25,7 @@ export class MovimientoInventarioComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.inventoryService.getInventario().subscribe({
-      next: (data) => {
-        this.productos = data;
-      },
-      error: (err) => {
-        console.error('Error al cargar la lista de productos para el select', err);
-      }
-    });
+    this.cargarList();
   }
 
   onSubmit() {
@@ -46,6 +39,8 @@ export class MovimientoInventarioComponent implements OnInit {
         next: () => {
           alert('Movimiento registrado exitosamente.');
           this.movimientoForm.reset();
+            this.productos = [];
+          this.cargarList();
         },
         error: (err) => {
           console.error('Error al registrar el movimiento', err);
@@ -56,4 +51,17 @@ export class MovimientoInventarioComponent implements OnInit {
       this.movimientoForm.markAllAsTouched();
     }
   }
+
+  cargarList() {
+    this.inventoryService.getInventario().subscribe({
+      next: (data) => {
+        this.productos = data;
+      },
+      error: (err) => {
+        console.error('Error al cargar la lista de productos para el select', err);
+      }
+    });
+  }
+
+
 }
