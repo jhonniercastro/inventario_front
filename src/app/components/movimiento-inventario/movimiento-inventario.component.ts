@@ -39,7 +39,7 @@ export class MovimientoInventarioComponent implements OnInit {
         next: () => {
           alert('Movimiento registrado exitosamente.');
           this.movimientoForm.reset();
-            this.productos = [];
+          this.productos = [];
           this.cargarList();
         },
         error: (err) => {
