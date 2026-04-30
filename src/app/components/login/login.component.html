@@ -1,0 +1,27 @@
+<div class="login-container">
+  <h2>Iniciar Sesión - CCL Inventario</h2>
+  
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    
+    <div class="form-group">
+      <label for="Username">Usuario:</label>
+      <input id="Username" type="text" formControlName="Username" placeholder="Ingresa tu usuario">
+      
+      @if (loginForm.get('Username')?.hasError('required') && loginForm.get('Username')?.touched) {
+        <small class="error-text">El usuario es obligatorio.</small>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="Password">Contraseña:</label>
+      <input id="Password" type="password" formControlName="Password" placeholder="Ingresa tu contraseña">
+      
+      @if (loginForm.get('Password')?.hasError('required') && loginForm.get('Password')?.touched) {
+        <small class="error-text">La contraseña es obligatoria.</small>
+      }
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid">Ingresar</button>
+    
+  </form>
+</div>

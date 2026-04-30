@@ -1,0 +1,37 @@
+<div class="container">
+  <header class="header">
+    <h2>Inventario Actual</h2>
+    <button routerLink="/movimientos" class="btn-primary">Registrar Movimiento</button>
+  </header>
+
+  @if (cargando) {
+    <p>Cargando datos del inventario...</p>
+  } @else {
+    <table class="inventory-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre del Producto</th>
+          <th>Cantidad Disponible</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (producto of productos; track producto.id) {
+          <tr>
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.nombre }}</td>
+            <td>
+              <span [class.low-stock]="producto.cantidad < 5">
+                {{ producto.cantidad }}
+              </span>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="3" class="text-center">No hay productos registrados en el sistema.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
